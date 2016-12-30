@@ -4,13 +4,18 @@ StructuredLogging collects data over HTTP, while your applications use the best 
 
 StructuredLogging is a log server that runs on a central machine. Your applications internally write structured events with a framework like Serilog, NLog, log4net.
 
+Structured logging preserves the individual property values, as well as the text, of each event.
+These are sent across the network to Seq, which displays and makes them searchable:
+
 ![alt tag](https://raw.githubusercontent.com/PSneijder/StructuredLogging/master/Assets/StructuredLogging.png)
 
 # QuickStart
 TODO
 
 # TODOs
-TODO (:
+* WPF Client.
+* Angular2 Client.
+* Refactoring (:
 
 # Recent Changes
 See [CHANGES.txt](CHANGES.txt)
