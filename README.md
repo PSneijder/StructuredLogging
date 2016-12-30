@@ -1,8 +1,6 @@
 # StructuredLogging
 
-StructuredLogging collects data over HTTP, while your applications use the best available structured logging APIs for your platform.
-
-StructuredLogging is a web application hosted on your infrastructure, so you retain complete control over your own data.
+StructuredLogging collects data over HTTP, while your applications use the best available structured logging APIs for your platform. StructuredLogging is a web application hosted on your infrastructure, so you retain complete control over your own data.
 
 ![alt tag](https://raw.githubusercontent.com/PSneijder/StructuredLogging/master/Assets/StructuredLogging.png)
 
