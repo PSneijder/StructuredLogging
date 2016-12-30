@@ -1,6 +1,6 @@
 # StructuredLogging
 
-StructuredLogging collects data over HTTP, while your applications use the best available structured logging APIs for your platform. The simple Windows installer, and plug-ins from NuGet or NPM, make getting started quick and friction-free.
+StructuredLogging collects data over HTTP, while your applications use the best available structured logging APIs for your platform.
 
 StructuredLogging is a web application hosted on your infrastructure, so you retain complete control over your own data.
 
