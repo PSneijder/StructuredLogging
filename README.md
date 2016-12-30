@@ -2,8 +2,6 @@
 
 StructuredLogging collects data over HTTP, while your applications use the best available structured logging APIs for your platform. StructuredLogging is a web application hosted on your infrastructure, so you retain complete control over your own data.
 
-StructuredLogging is a log server that runs on a central machine. Your applications internally write structured events with a framework like Serilog, NLog, log4net.
-
 Structured logging preserves the individual property values, as well as the text, of each event.
 These are sent across the network to StructuredLogging, which displays and makes them searchable:
 
