@@ -4,10 +4,10 @@ StructuredLogging collects data over HTTP, while your applications use the best 
 
 StructuredLogging is a web application hosted on your infrastructure, so you retain complete control over your own data.
 
+![alt tag](https://raw.githubusercontent.com/PSneijder/StructuredLogging/master/Assets/StructuredLogging.png)
+
 # QuickStart
 TODO
-
-![alt tag](https://raw.githubusercontent.com/PSneijder/StructuredLogging/master/Assets/StructuredLogging.png)
 
 # TODOs
 TODO (:
