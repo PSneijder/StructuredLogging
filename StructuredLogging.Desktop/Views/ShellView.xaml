@@ -1,0 +1,42 @@
+﻿<mahApps:MetroWindow x:Class="StructuredLogging.Desktop.Views.Shell"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mahApps="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:regions="http://prismlibrary.com/"
+        xmlns:modularity="clr-namespace:StructuredLogging.Desktop.Utilities.Modularity;assembly=StructuredLogging.Desktop.Utilities"
+        Icon="../Resources/App.ico"
+        ShowIconOnTitleBar="False"
+        Title="Shell" Height="300" Width="500"
+        TitleTemplate="{DynamicResource TitleTemplate}"
+        MinHeight="{Binding Path=WindowHeight, Mode=TwoWay}" MinWidth="{Binding Path=WindowWidth, Mode=TwoWay}"
+        ResizeMode="CanResizeWithGrip"
+        BorderThickness="0" GlowBrush="Black">
+
+    <mahApps:MetroWindow.Resources>
+        <DataTemplate x:Key="TitleTemplate">
+            <StackPanel VerticalAlignment="Center"
+					Margin="7,0,0,0"
+					Orientation="Horizontal">
+                <StackPanel.Resources>
+                    <Style x:Key="TitleTextBlockStyle"
+					   TargetType="TextBlock">
+                        <Setter Property="FontSize"
+							Value="14" />
+                    </Style>
+                </StackPanel.Resources>
+                <TextBlock Style="{StaticResource TitleTextBlockStyle}">
+				<Run Text="EVENTS"
+					 FontWeight="ExtraBold" />
+				<Run Text="Structured Logging" />
+                </TextBlock>
+            </StackPanel>
+        </DataTemplate>
+    </mahApps:MetroWindow.Resources>
+    
+    <Grid>
+        <ContentControl x:Name="MainRegion"
+                        regions:RegionManager.RegionName="{x:Static modularity:RegionNames.MainRegion}"
+                        VerticalContentAlignment="Stretch"
+                        HorizontalContentAlignment="Stretch" />
+    </Grid>
+</mahApps:MetroWindow>
