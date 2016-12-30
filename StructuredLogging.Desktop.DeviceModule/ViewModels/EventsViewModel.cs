@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Prism.Commands;
 using StructuredLogging.DataContracts;
 using StructuredLogging.DataContracts.Query;
-using StructuredLogging.Desktop.Utilities.Converters;
 using StructuredLogging.Desktop.Utilities.Models.Filter;
 using StructuredLogging.Desktop.Utilities.Services;
 using StructuredLogging.Desktop.Utilities.Services.Clients;
@@ -43,6 +42,8 @@ namespace StructuredLogging.Desktop.EventsModule.ViewModels
         #endregion
 
         #region Properties
+
+        public CultureInfo CurrentCulture { get; set; }
 
         public string QueryText
         {
@@ -118,7 +119,13 @@ namespace StructuredLogging.Desktop.EventsModule.ViewModels
         {
             _dialogService.DialogClosed += OnGetRawEvents;
 
-            var result = await _client.Search(new SearchRequest(string.Empty));
+            var culture = new CultureInfo("de-DE");
+            CurrentCulture = culture;
+
+            CultureInfo.DefaultThreadCurrentCulture = culture;
+            CultureInfo.DefaultThreadCurrentUICulture = culture;
+
+            SearchResult result = await _client.Search(new SearchRequest(string.Empty));
 
             MinStartDate = result.Results.Min(p => p.Timestamp);
             MaxStartDate = result.Results.Max(p => p.Timestamp);

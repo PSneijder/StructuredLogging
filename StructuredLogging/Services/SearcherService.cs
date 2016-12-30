@@ -8,12 +8,10 @@ namespace StructuredLogging.Services
         : ISearcherService
     {
         private readonly ISearcher _searcher;
-        private readonly IFormater _formater;
 
-        public SearcherService(ISearcher searcher, IFormater formater)
+        public SearcherService(ISearcher searcher)
         {
             _searcher = searcher;
-            _formater = formater;
         }
 
         public SearchResult Search(string phrase)

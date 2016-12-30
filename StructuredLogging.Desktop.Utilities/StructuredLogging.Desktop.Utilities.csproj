@@ -81,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Behaviours\AllowableCharactersBehaviour.cs" />
+    <Compile Include="Data\CultureAwareBinding.cs" />
     <Compile Include="Controls\DateTimePicker.xaml.cs">
       <DependentUpon>DateTimePicker.xaml</DependentUpon>
     </Compile>

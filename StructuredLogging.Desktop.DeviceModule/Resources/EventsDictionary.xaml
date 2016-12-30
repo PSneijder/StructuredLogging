@@ -3,7 +3,9 @@
                     xmlns:dataContracts="clr-namespace:StructuredLogging.DataContracts;assembly=StructuredLogging.DataContracts"
                     xmlns:converters="clr-namespace:StructuredLogging.Desktop.Utilities.Converters;assembly=StructuredLogging.Desktop.Utilities"
                     xmlns:selectors="clr-namespace:StructuredLogging.Desktop.Utilities.Selectors;assembly=StructuredLogging.Desktop.Utilities"
-                    xmlns:models="clr-namespace:StructuredLogging.Desktop.Utilities.Models.Filter;assembly=StructuredLogging.Desktop.Utilities">
+                    xmlns:models="clr-namespace:StructuredLogging.Desktop.Utilities.Models.Filter;assembly=StructuredLogging.Desktop.Utilities"
+                    xmlns:controls="clr-namespace:StructuredLogging.Desktop.Utilities.Controls;assembly=StructuredLogging.Desktop.Utilities"
+                    xmlns:data="clr-namespace:StructuredLogging.Desktop.Utilities.Data;assembly=StructuredLogging.Desktop.Utilities">
 
     <BitmapImage x:Key="CompIconDefault" UriSource="Images/NoGraphic.png" />
 
@@ -69,9 +71,9 @@
                            Foreground="{DynamicResource AnthrazitBrush}"
                            MaxWidth="{Binding ElementName=InnerGrid, Path=ActualWidth}"
                            VerticalAlignment="Center"
-                           Text="{Binding Path=Timestamp}"
+                           Text="{data:CultureAwareBinding Path=Timestamp}"
                            TextTrimming="CharacterEllipsis"
-                           ToolTip="{Binding Path=Timestamp}"
+                           ToolTip="{data:CultureAwareBinding Path=Timestamp}"
                            TextOptions.TextFormattingMode="Display" />
                 <TextBlock Grid.Row="2"
                            Foreground="Gray"
