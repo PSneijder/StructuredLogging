@@ -144,7 +144,7 @@
     <Resource Include="Resources\App.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\StructuredLogging.Desktop.DeviceModule\StructuredLogging.Desktop.EventsModule.csproj">
+    <ProjectReference Include="..\StructuredLogging.Desktop.EventsModule\StructuredLogging.Desktop.EventsModule.csproj">
       <Project>{d5309da8-47d8-48ff-bfa3-ef7e39670a55}</Project>
       <Name>StructuredLogging.Desktop.EventsModule</Name>
     </ProjectReference>

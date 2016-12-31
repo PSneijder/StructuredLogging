@@ -21,7 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontend", "Frontend", "{BC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StructuredLogging.Desktop", "StructuredLogging.Desktop\StructuredLogging.Desktop.csproj", "{70122C32-6B22-4175-A0D4-9E429CAAE308}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StructuredLogging.Desktop.EventsModule", "StructuredLogging.Desktop.DeviceModule\StructuredLogging.Desktop.EventsModule.csproj", "{D5309DA8-47D8-48FF-BFA3-EF7E39670A55}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StructuredLogging.Desktop.EventsModule", "StructuredLogging.Desktop.EventsModule\StructuredLogging.Desktop.EventsModule.csproj", "{D5309DA8-47D8-48FF-BFA3-EF7E39670A55}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StructuredLogging.Desktop.Utilities", "StructuredLogging.Desktop.Utilities\StructuredLogging.Desktop.Utilities.csproj", "{644E79EB-41CB-42A3-B219-95DACB1C5F2A}"
 EndProject
