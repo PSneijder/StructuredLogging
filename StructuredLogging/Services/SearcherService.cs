@@ -14,12 +14,6 @@ namespace StructuredLogging.Services
             _searcher = searcher;
         }
 
-        public SearchResult Search(string phrase)
-        {
-            var result = _searcher.Search(new SearchRequest(phrase));
-            return result;
-        }
-
         public SearchResult Search(SearchRequest request)
         {
             var result = _searcher.Search(request);

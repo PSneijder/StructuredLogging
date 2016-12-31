@@ -2,7 +2,7 @@
 
 namespace StructuredLogging.Extensions
 {
-    internal static class DateTimeExtensions
+    static class DateTimeExtensions
     {
         public static DateTime FromUnixTimeStamp(this double unixTimeStamp)
         {

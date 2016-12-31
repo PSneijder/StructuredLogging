@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using StructuredLogging.DataContracts;
 using StructuredLogging.DataContracts.Event;
 using StructuredLogging.Extensions;
 

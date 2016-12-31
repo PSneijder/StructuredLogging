@@ -3,7 +3,7 @@ using StructuredLogging.Desktop.Utilities;
 
 namespace StructuredLogging.Desktop.Extensions
 {
-    public static class NinjectExtensions
+    static class NinjectExtensions
     {
         public static void Initialize(this IKernel kernel)
         {

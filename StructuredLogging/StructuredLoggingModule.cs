@@ -8,7 +8,7 @@ using StructuredLogging.Services.Contracts;
 
 namespace StructuredLogging
 {
-    public class StructuredLoggingModule
+    public sealed class StructuredLoggingModule
         : NinjectModule
     {
         public override void Load()

@@ -8,7 +8,7 @@ using StructuredLogging.Desktop.Views;
 
 namespace StructuredLogging.Desktop.Modularity
 {
-    internal sealed class DesktopBootstrapper
+    sealed class DesktopBootstrapper
         : NinjectBootstrapper
     {
         protected override DependencyObject CreateShell()

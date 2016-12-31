@@ -6,7 +6,7 @@ namespace StructuredLogging.Desktop.Utilities.ViewModels
 {
     public abstract class DialogViewModelBase
         : ViewModelBase
-        , IHaveHaveDialogView
+            , IHaveHaveDialogView
     {
         private bool _hasErrors;
         private string _validationSummary;

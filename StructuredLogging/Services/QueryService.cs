@@ -33,14 +33,6 @@ namespace StructuredLogging.Services
             var result = _searcher.Search(new SearchRequest(string.Empty));
 
             return result;
-
-            /*foreach (var rawEvent in rawEvents)
-            {
-                var message = _formater.FormatEvent(rawEvent);
-                var timeStamp = DateTime.Parse(rawEvent.Timestamp);
-
-                yield return new SearchResult(rawEvent.Level, timeStamp, message);
-            }*/
         }
 
         public IEnumerable<SearchResultItem> QueryBy(Query query)

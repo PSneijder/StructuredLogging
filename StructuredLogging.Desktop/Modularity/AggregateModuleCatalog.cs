@@ -6,7 +6,7 @@ using Prism.Modularity;
 
 namespace StructuredLogging.Desktop.Modularity
 {
-    internal sealed class AggregateModuleCatalog
+    sealed class AggregateModuleCatalog
         : IModuleCatalog
     {
         private readonly List<IModuleCatalog> _catalogs = new List<IModuleCatalog>();

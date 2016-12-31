@@ -6,10 +6,9 @@ namespace StructuredLogging.Desktop.Utilities.ViewModels
 {
     public abstract class ViewModelBase
         : INotifyPropertyChanged
-        , INavigationAware
+            , INavigationAware
     {
         private bool _isBusy;
-
         private string _title;
 
         public bool IsBusy { get { return _isBusy; } set { SetPropertyChanged(ref _isBusy, value); } }

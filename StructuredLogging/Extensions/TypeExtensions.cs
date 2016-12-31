@@ -5,12 +5,11 @@ using System.Reflection;
 
 namespace StructuredLogging.Extensions
 {
-    internal static class TypeExtensions
+    static class TypeExtensions
     {
-        internal static IEnumerable<PropertyInfo> GetPropertiesRecursive(this Type type)
+        public static IEnumerable<PropertyInfo> GetPropertiesRecursive(this Type type)
         {
             var seenNames = new HashSet<string>();
-
             var currentTypeInfo = type.GetTypeInfo();
 
             while (currentTypeInfo.AsType() != typeof(object))

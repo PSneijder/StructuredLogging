@@ -122,11 +122,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Images\CompIconDefault.png" />
-    <Resource Include="Resources\Images\ListIconDefault.png" />
-    <Resource Include="Resources\Images\ToolIconDefault.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Images\NoGraphic.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

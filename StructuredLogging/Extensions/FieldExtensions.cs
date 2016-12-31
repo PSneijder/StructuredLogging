@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace StructuredLogging.Extensions
 {
-    internal static class FieldExtensions
+    static class FieldExtensions
     {
         public static DateTime AsDateTime(this Field field)
         {

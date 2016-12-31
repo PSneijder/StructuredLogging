@@ -50,7 +50,7 @@ namespace StructuredLogging.Desktop.Utilities.Behaviours
                 args.Handled = true;
         }
 
-        void OnPreviewTextInput(object sender, TextCompositionEventArgs args)
+        private void OnPreviewTextInput(object sender, TextCompositionEventArgs args)
         {
             args.Handled = !IsValid(args.Text, false);
         }

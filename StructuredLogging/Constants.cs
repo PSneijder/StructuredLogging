@@ -21,7 +21,7 @@ namespace StructuredLogging
         {
             return new Dictionary<string, FacetSpec>
             {
-                { Facet.Level, new FacetSpec { MinHitCount = 1, MaxCount = 25, OrderBy = FacetSpec.FacetSortSpec.OrderHitsDesc} },
+                { Facet.Level, new FacetSpec { MinHitCount = 1, MaxCount = 25, ExpandSelection = true, OrderBy = FacetSpec.FacetSortSpec.OrderHitsDesc} },
                 //{ Facet.PropertyField, new FacetSpec { MinHitCount = 1, MaxCount = 25, OrderBy = FacetSpec.FacetSortSpec.OrderHitsDesc } }
             };
         }

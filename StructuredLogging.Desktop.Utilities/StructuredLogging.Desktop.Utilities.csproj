@@ -82,19 +82,14 @@
   <ItemGroup>
     <Compile Include="Behaviours\AllowableCharactersBehaviour.cs" />
     <Compile Include="Data\CultureAwareBinding.cs" />
-    <Compile Include="Controls\DateTimePicker.xaml.cs">
-      <DependentUpon>DateTimePicker.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\GroupBoxControl.cs" />
     <Compile Include="Converters\FilterItemToFilterParameterConverter.cs" />
     <Compile Include="Converters\LevelToBackgroundColorConverter.cs" />
     <Compile Include="Converters\LevelToColorConverter.cs" />
     <Compile Include="Converters\InverseBooleanConverter.cs" />
-    <Compile Include="Extensions\DictionaryExtensions.cs" />
     <Compile Include="Models\DialogActionCommand.cs" />
     <Compile Include="Models\Filter\FilterGroup.cs" />
     <Compile Include="Models\Filter\FilterItem.cs" />
-    <Compile Include="Ninject\ScopeCheckingNinjectKernel.cs" />
     <Compile Include="Selectors\QueryFilterSelector.cs" />
     <Compile Include="Services\Clients\ServiceClient.cs" />
     <Compile Include="Services\Clients\ConfigurationReaderBase.cs" />
@@ -119,10 +114,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Controls\DateTimePicker.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Resources\CustomMetroDictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -131,11 +122,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\CompIconDefault.png" />
-    <Resource Include="Resources\Images\ListIconDefault.png" />
-    <Resource Include="Resources\Images\ToolIconDefault.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\NoGraphic.png" />

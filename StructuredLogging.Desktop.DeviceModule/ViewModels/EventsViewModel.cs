@@ -119,7 +119,7 @@ namespace StructuredLogging.Desktop.EventsModule.ViewModels
         {
             _dialogService.DialogClosed += OnGetRawEvents;
 
-            var culture = new CultureInfo("de-DE");
+            var culture = new CultureInfo("en-US");
             CurrentCulture = culture;
 
             CultureInfo.DefaultThreadCurrentCulture = culture;

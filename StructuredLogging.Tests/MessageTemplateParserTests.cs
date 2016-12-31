@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using StructuredLogging.Core;
-using StructuredLogging.DataContracts;
 using StructuredLogging.DataContracts.Event;
 
 namespace StructuredLogging.Tests

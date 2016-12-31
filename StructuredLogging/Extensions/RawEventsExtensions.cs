@@ -6,7 +6,7 @@ using StructuredLogging.DataContracts.Event;
 
 namespace StructuredLogging.Extensions
 {
-    internal static class RawEventsExtensions
+    static class RawEventsExtensions
     {
         public static IEnumerable<SearchResultItem> ToSearchResultItems(this IEnumerable<RawEvent> rawEvents, IFormater formater)
         {

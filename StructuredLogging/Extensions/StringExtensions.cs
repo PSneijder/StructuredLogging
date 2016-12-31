@@ -5,14 +5,14 @@ using System.Web.UI;
 
 namespace StructuredLogging.Extensions
 {
-    internal static class StringExtensions
+    static class StringExtensions
     {
-        internal static string FormatWith(this string format, object source)
+        public static string FormatWith(this string format, object source)
         {
             return FormatWith(format, null, source);
         }
 
-        internal static string FormatWith(this string format, IFormatProvider provider, object source)
+        public static string FormatWith(this string format, IFormatProvider provider, object source)
         {
             if (format == null)
             {

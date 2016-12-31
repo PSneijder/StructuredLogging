@@ -8,7 +8,7 @@ using StructuredLogging.Services.Contracts;
 
 namespace StructuredLogging.TestApp
 {
-    internal sealed class Runner
+    sealed class Runner
     {
         private readonly IKernel _kernel;
 
@@ -44,12 +44,25 @@ namespace StructuredLogging.TestApp
                 }
             };
 
+            var verboseRawEvent = new RawEvent
+            {
+                Timestamp = new DateTime(2016, 2, 18, 08, 57, 54).ToString("O"),
+                Level = "Verbose",
+                MessageTemplate = "CPU usage is {CpuPercentage:P2} on {MachineName}",
+                Properties = new Dictionary<string, object>
+                {
+                    { "CpuPercentage", 0.12 },
+                    { "MachineName", "nbherb-rmbp" }
+                }
+            };
+
             var rawEvents = new RawEvents
             {
                 Events = new[]
                 {
                     warningRawEvent,
                     errorRawEvent,
+                    verboseRawEvent,
                     new RawEvent
                     {
                         Timestamp = new DateTime(2016, 2, 12, 12, 4, 9).ToString("O"),
@@ -75,10 +88,11 @@ namespace StructuredLogging.TestApp
             indexer.Index(rawEvents);
             
             var searcher = _kernel.Get<ISearcherService>();
-            var request = new SearchRequest("disk", new[]
+            var request = new SearchRequest("cpu", new[]
                 {
                     new QueryFilterProperty(DataContracts.Constants.Facet.Level, "Warning"), 
-                    //new QueryFilterProperty(DataContracts.Constants.Facet.Level, "Error")
+                    new QueryFilterProperty(DataContracts.Constants.Facet.Level, "Error"),
+                    new QueryFilterProperty(DataContracts.Constants.Facet.Level, "Verbose")
                 });
 
             var results = searcher.Search(request);

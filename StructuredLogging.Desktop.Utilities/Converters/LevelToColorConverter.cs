@@ -5,12 +5,13 @@ using System.Windows.Media;
 
 namespace StructuredLogging.Desktop.Utilities.Converters
 {
+    [ValueConversion(typeof(string), typeof(SolidColorBrush))]
     public sealed class LevelToColorConverter
         : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            SolidColorBrush colorBrush = new SolidColorBrush(Colors.Black);
+            SolidColorBrush colorBrush = new SolidColorBrush(Colors.DimGray);
 
             if (value.Equals("Warning"))
             {

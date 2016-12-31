@@ -7,6 +7,7 @@ using StructuredLogging.Desktop.Utilities.Models.Filter;
 
 namespace StructuredLogging.Desktop.Utilities.Converters
 {
+    [ValueConversion(typeof(object[]), typeof(FilterItem))]
     public sealed class FilterItemToFilterParameterConverter
         : IMultiValueConverter
     {

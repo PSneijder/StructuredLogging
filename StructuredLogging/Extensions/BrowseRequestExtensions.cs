@@ -6,7 +6,7 @@ using Query = StructuredLogging.DataContracts.Query.Query;
 
 namespace StructuredLogging.Extensions
 {
-    internal static class BrowseRequestExtensions
+    static class BrowseRequestExtensions
     {
         public static void AddQueryFilter(this BrowseRequest request, Query query)
         {

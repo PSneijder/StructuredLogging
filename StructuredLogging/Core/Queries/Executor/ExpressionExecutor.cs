@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using Superpower;
 using StructuredLogging.Core.Queries.Parser;
 using StructuredLogging.Core.Queries.Tokenization;
@@ -19,17 +18,16 @@ namespace StructuredLogging.Core.Queries.Executor
                 var compiled = expr.Compile();
 
                 var result = compiled();
-                Console.WriteLine(result);
 
                 return result;
             }
-            catch (ParseException ex)
+            catch (ParseException)
             {
-                Console.Error.WriteLine(ex.Message);
+                /* TODO */
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Console.Error.WriteLine(ex);
+                /* TODO */
             }
 
             return null;

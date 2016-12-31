@@ -162,7 +162,7 @@
                                FontSize="18"
                                Foreground="White"
                                VerticalAlignment="Center"
-                               Text="Clear" />
+                               Text="Clear Filters" />
                 </StackPanel>
             </Grid>
 
