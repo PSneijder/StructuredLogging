@@ -14,6 +14,7 @@ TODO
 * <strike>WPF Client.</strike>
 * Angular2 Client.
 * Refactoring (:
+* Integration for Serilog, NLog, log4net, SLAP, Powershell, NodeJS, Python, Java.
 
 # Recent Changes
 See [CHANGES.txt](CHANGES.txt)
