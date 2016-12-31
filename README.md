@@ -11,9 +11,10 @@ These are sent across the network to StructuredLogging, which displays and makes
 TODO
 
 # TODOs
-* WPF Client.
+* <strike>WPF Client.</strike>
 * Angular2 Client.
 * Refactoring (:
+* Integration for Serilog, NLog, log4net, SLAP, Powershell, NodeJS, Python, Java.
 
 # Recent Changes
 See [CHANGES.txt](CHANGES.txt)
