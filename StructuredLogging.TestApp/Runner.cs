@@ -90,9 +90,9 @@ namespace StructuredLogging.TestApp
             var searcher = _kernel.Get<ISearcherService>();
             var request = new SearchRequest("cpu", new[]
                 {
-                    new QueryFilterProperty(DataContracts.Constants.Facet.Level, "Warning"), 
-                    new QueryFilterProperty(DataContracts.Constants.Facet.Level, "Error"),
-                    new QueryFilterProperty(DataContracts.Constants.Facet.Level, "Verbose")
+                    new QueryFilterItem(DataContracts.Constants.Facet.Level, "Warning"), 
+                    new QueryFilterItem(DataContracts.Constants.Facet.Level, "Error"),
+                    new QueryFilterItem(DataContracts.Constants.Facet.Level, "Verbose")
                 });
 
             var results = searcher.Search(request);

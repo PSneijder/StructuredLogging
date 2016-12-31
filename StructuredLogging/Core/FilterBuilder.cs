@@ -18,21 +18,23 @@ namespace StructuredLogging.Core
         {
             foreach (KeyValuePair<string, IFacetAccessible> accessible in result.FacetMap)
             {
-                IList<QueryFilterProperty> filters = new Collection<QueryFilterProperty>();
+                IList<QueryFilterItem> filters = new Collection<QueryFilterItem>();
                 IEnumerable<BrowseFacet> facetVals = accessible.Value.GetFacets();
 
                 foreach (BrowseFacet facet in facetVals)
                 {
-                    var property = new QueryFilterProperty(accessible.Key, facet.Value, facet.FacetValueHitCount);
+                    var property = new QueryFilterItem(accessible.Key, facet.Value, facet.FacetValueHitCount);
                     filters.Add(property);
                 }
 
-                string key = accessible.Key;
+                string name = accessible.Key;
 
                 if (_translations.ContainsKey(accessible.Key))
-                    key = _translations[accessible.Key];
+                { 
+                    name = _translations[accessible.Key];
+                }
 
-                yield return new QueryFilterGroup(key, filters);
+                yield return new QueryFilterGroup(name, filters);
             }
         }
     }

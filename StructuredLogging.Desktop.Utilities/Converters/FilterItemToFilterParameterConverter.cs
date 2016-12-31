@@ -18,10 +18,10 @@ namespace StructuredLogging.Desktop.Utilities.Converters
                 return null;
             }
 
-            QueryFilterProperty property = (QueryFilterProperty) values[0];
+            QueryFilterItem item = (QueryFilterItem) values[0];
             bool isChecked = (bool) values[1];
 
-            return new FilterItem(property, isChecked);
+            return new FilterItem(item, isChecked);
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)

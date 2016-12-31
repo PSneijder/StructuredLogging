@@ -15,16 +15,16 @@ namespace StructuredLogging.DataContracts
 
         public DateTime? StartDate { get; }
         public DateTime? EndDate { get; }
-        public QueryFilterProperty[] Properties { get; }
+        public QueryFilterItem[] Items { get; }
 
-        public SearchRequest(string phrase, IEnumerable<QueryFilterProperty> properties = null, DateTime? startDate = null, DateTime? endDate = null, int skip = 0, int take = 0)
+        public SearchRequest(string phrase, IEnumerable<QueryFilterItem> properties = null, DateTime? startDate = null, DateTime? endDate = null, int skip = 0, int take = 0)
         {
             Phrase = phrase;
             StartDate = startDate;
             EndDate = endDate;
             Skip = skip;
             Take = take;
-            Properties = properties?.ToArray() ?? new QueryFilterProperty[0];
+            Items = properties?.ToArray() ?? new QueryFilterItem[0];
         }
 
         public override string ToString()

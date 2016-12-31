@@ -186,7 +186,7 @@ namespace StructuredLogging.Desktop.EventsModule.ViewModels
             if (parameter != null && parameter.IsChecked)
             {
                 var filter = parameter.Item;
-                filters.Add(new QueryFilterProperty(filter.Name, filter.Value, filter.HitCount));
+                filters.Add(new QueryFilterItem(filter.Name, filter.Value, filter.HitCount));
             }
 
             SearchResult result;

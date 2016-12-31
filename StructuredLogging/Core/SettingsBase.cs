@@ -7,7 +7,7 @@ namespace StructuredLogging.Core
 {
     abstract class SettingsBase
     {
-        public T GetSetting<T>(string name, T defaultValue)
+        public TReturnType GetSetting<TReturnType>(string name, TReturnType defaultValue)
         {
             string configFileName = HostingEnvironment.IsHosted ? "web.config" : "app.config";
             ExeConfigurationFileMap fileMap = new ExeConfigurationFileMap { ExeConfigFilename = configFileName };
@@ -21,15 +21,15 @@ namespace StructuredLogging.Core
             }
 
             KeyValueConfigurationElement setting = settings.Settings[name];
-            T value;
+            TReturnType value;
 
             try
             {
-                value = (T)Convert.ChangeType(setting.Value, typeof(T));
+                value = (TReturnType) Convert.ChangeType(setting.Value, typeof(TReturnType));
             }
             catch (Exception)
             {
-                throw;
+                return defaultValue;
             }
 
             return value;

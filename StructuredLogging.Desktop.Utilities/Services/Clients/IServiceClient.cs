@@ -8,6 +8,6 @@ namespace StructuredLogging.Desktop.Utilities.Services.Clients
     public interface IServiceClient
     {
         Task<SearchResult> Search(SearchRequest request);
-        Task<IEnumerable<QueryFilterProperty>> GetQueryFilterProperties();
+        Task<IEnumerable<QueryFilterItem>> GetFilterItems();
     }
 }

@@ -3,10 +3,10 @@ using System.Diagnostics;
 
 namespace StructuredLogging.DataContracts.Query
 {
-    [DebuggerDisplay("{Properties} {From} {To}")]
+    [DebuggerDisplay("{Items} {From} {To}")]
     public struct Query
     {
-        public QueryFilterProperty[] Properties { get; set; }
+        public QueryFilterItem[] Items { get; set; }
         public DateTime From { get; set; }
         public DateTime To { get; set; }
     }

@@ -22,9 +22,9 @@ namespace StructuredLogging.Extensions
             };
         }
 
-        public static void AddQueryProperty(this BrowseRequest request, QueryFilterProperty property)
+        public static void AddQueryProperty(this BrowseRequest request, QueryFilterItem item)
         {
-            var selection = new BrowseSelection(property.Name)
+            var selection = new BrowseSelection(item.Name)
             {
                 SelectionOperation = BrowseSelection.ValueOperation.ValueOperationOr,
             };
@@ -35,7 +35,7 @@ namespace StructuredLogging.Extensions
         private static IDictionary<string, BrowseSelection> CreateSelection(Query query)
         {
             var selectionMap = new Dictionary<string, BrowseSelection>();
-            foreach (var property in query.Properties)
+            foreach (var property in query.Items)
             {
                 BrowseSelection selection;
                 if (selectionMap.TryGetValue(property.Name, out selection))

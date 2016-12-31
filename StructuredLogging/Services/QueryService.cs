@@ -20,7 +20,7 @@ namespace StructuredLogging.Services
             _formater = formater;
         }
 
-        public IEnumerable<QueryFilterProperty> GetQueryProperties()
+        public IEnumerable<QueryFilterItem> GetFilterItems()
         {
             var queries = _searcher.SearchProperties()
                     .ToList();
@@ -35,23 +35,9 @@ namespace StructuredLogging.Services
             return result;
         }
 
-        public IEnumerable<SearchResultItem> QueryBy(Query query)
+        public IEnumerable<SearchResultItem> Query(Query query)
         {
             var rawEvents = _searcher.SearchByQuery(query)
-                    .ToList();
-
-            foreach (var rawEvent in rawEvents)
-            {
-                var message = _formater.FormatEvent(rawEvent);
-                var timeStamp = DateTime.Parse(rawEvent.Timestamp);
-
-                yield return new SearchResultItem(rawEvent.Level, timeStamp, message);
-            }
-        }
-
-        public IEnumerable<SearchResultItem> QueryBy(QueryFilterProperty property)
-        {
-            var rawEvents = _searcher.SearchByProperty(property)
                     .ToList();
 
             foreach (var rawEvent in rawEvents)

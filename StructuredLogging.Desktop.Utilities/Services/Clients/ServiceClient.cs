@@ -51,9 +51,9 @@ namespace StructuredLogging.Desktop.Utilities.Services.Clients
             return await Task.Factory.StartNew(() => _searcherService.Search(request));
         }
 
-        public async Task<IEnumerable<QueryFilterProperty>> GetQueryFilterProperties()
+        public async Task<IEnumerable<QueryFilterItem>> GetFilterItems()
         {
-            return await Task.Factory.StartNew(() => _queryService.GetQueryProperties());
+            return await Task.Factory.StartNew(() => _queryService.GetFilterItems());
         }
     }
 }

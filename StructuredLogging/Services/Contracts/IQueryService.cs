@@ -6,12 +6,10 @@ namespace StructuredLogging.Services.Contracts
 {
     public interface IQueryService
     {
-        IEnumerable<QueryFilterProperty> GetQueryProperties();
-
         SearchResult Query();
 
-        IEnumerable<SearchResultItem> QueryBy(Query query);
+        IEnumerable<SearchResultItem> Query(Query query);
 
-        IEnumerable<SearchResultItem> QueryBy(QueryFilterProperty property);
+        IEnumerable<QueryFilterItem> GetFilterItems();
     }
 }

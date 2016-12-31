@@ -56,7 +56,7 @@ namespace StructuredLogging.Core
 
             var filter = new QueryFilter
             {
-                Properties = searchRequest.Properties,
+                Items = searchRequest.Items,
                 From = searchRequest.StartDate ?? DateTime.MinValue,
                 To = searchRequest.EndDate ?? DateTime.MaxValue
             };
@@ -81,7 +81,7 @@ namespace StructuredLogging.Core
             return BrowseAsRawEvent(request);
         }
 
-        public IEnumerable<RawEvent> SearchByProperty(QueryFilterProperty property, int skip = 0, int take = Constants.MaxNrOfSearchResults)
+        public IEnumerable<RawEvent> SearchByProperty(QueryFilterItem item, int skip = 0, int take = Constants.MaxNrOfSearchResults)
         {
             var query = new MatchAllDocsQuery();
 
@@ -93,12 +93,12 @@ namespace StructuredLogging.Core
                 FacetSpecs = Fields.CreatePerFieldFacetSpecs()
             };
 
-            request.AddQueryProperty(property);
+            request.AddQueryProperty(item);
 
             return BrowseAsRawEvent(request);
         }
 
-        public IEnumerable<QueryFilterProperty> SearchProperties(int skip = 0, int take = Constants.MaxNrOfSearchResults)
+        public IEnumerable<QueryFilterItem> SearchProperties(int skip = 0, int take = Constants.MaxNrOfSearchResults)
         {
             var query = new MatchAllDocsQuery();
 
@@ -117,9 +117,9 @@ namespace StructuredLogging.Core
             {
                 using (var boboIndexReader = BoboIndexReader.GetInstance(indexReader, Fields.CreatePerFieldFacetHandlers()))
                 {
-                    using (IBrowsable browser = new BoboBrowser(boboIndexReader))
+                    using (var browser = new BoboBrowser(boboIndexReader))
                     {
-                        using (BrowseResult result = browser.Browse(request))
+                        using (var result = browser.Browse(request))
                         {
                             IFacetAccessible propertyAccessible;
                             if (!result.FacetMap.TryGetValue(DataContracts.Constants.Facet.PropertyField, out propertyAccessible)) yield break;
@@ -127,7 +127,7 @@ namespace StructuredLogging.Core
                             IEnumerable<BrowseFacet> facetVals = propertyAccessible.GetFacets();
                             foreach (BrowseFacet facet in facetVals)
                             {
-                                yield return new QueryFilterProperty(DataContracts.Constants.Facet.PropertyField, facet.Value, facet.FacetValueHitCount);
+                                yield return new QueryFilterItem(DataContracts.Constants.Facet.PropertyField, facet.Value, facet.FacetValueHitCount);
                             }
                         }
                     }
@@ -137,13 +137,13 @@ namespace StructuredLogging.Core
 
         private SearchResult BrowseAsSearchResult(SearchRequest searchRequest, BrowseRequest browseRequest)
         {
-            using (FSDirectory directory = FSDirectory.Open(new DirectoryInfo(_path)))
+            using (var directory = FSDirectory.Open(new DirectoryInfo(_path)))
             { 
-                using (IndexReader indexReader = IndexReader.Open(directory, ReadonlyMode))
+                using (var indexReader = IndexReader.Open(directory, ReadonlyMode))
                 {
-                    using (BoboIndexReader boboIndexReader = BoboIndexReader.GetInstance(indexReader, Fields.CreatePerFieldFacetHandlers()))
+                    using (var boboIndexReader = BoboIndexReader.GetInstance(indexReader, Fields.CreatePerFieldFacetHandlers()))
                     {
-                        using (IBrowsable browser = new BoboBrowser(boboIndexReader))
+                        using (var browser = new BoboBrowser(boboIndexReader))
                         {
                             using (BrowseResult result = browser.Browse(browseRequest))
                             {
@@ -164,15 +164,15 @@ namespace StructuredLogging.Core
 
         private IEnumerable<RawEvent> BrowseAsRawEvent(BrowseRequest request)
         {
-            using (FSDirectory directory = FSDirectory.Open(new DirectoryInfo(_path)))
+            using (var directory = FSDirectory.Open(new DirectoryInfo(_path)))
             {
-                using (IndexReader indexReader = IndexReader.Open(directory, ReadonlyMode))
+                using (var indexReader = IndexReader.Open(directory, ReadonlyMode))
                 {
-                    using (BoboIndexReader boboIndexReader = BoboIndexReader.GetInstance(indexReader, Fields.CreatePerFieldFacetHandlers()))
+                    using (var boboIndexReader = BoboIndexReader.GetInstance(indexReader, Fields.CreatePerFieldFacetHandlers()))
                     {
-                        using (IBrowsable browser = new BoboBrowser(boboIndexReader))
+                        using (var browser = new BoboBrowser(boboIndexReader))
                         {
-                            using (BrowseResult result = browser.Browse(request))
+                            using (var result = browser.Browse(request))
                             {
                                 foreach (BrowseHit hit in result.Hits)
                                 {

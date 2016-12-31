@@ -8,9 +8,9 @@ namespace StructuredLogging.DataContracts.Query
     public class QueryFilterGroup
     {
         public string Name { get; }
-        public QueryFilterProperty[] Filters { get; }
+        public QueryFilterItem[] Filters { get; }
 
-        public QueryFilterGroup(string name, IEnumerable<QueryFilterProperty> filters)
+        public QueryFilterGroup(string name, IEnumerable<QueryFilterItem> filters)
         {
             Name = name;
             Filters = filters.ToArray();

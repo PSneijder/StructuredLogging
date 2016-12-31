@@ -7,20 +7,20 @@ namespace StructuredLogging.Desktop.Utilities.Models.Filter
     public class FilterItem
     {
         public bool IsChecked { get; set; }
-        public QueryFilterProperty Item { get; }
+        public QueryFilterItem Item { get; }
 
-        public FilterItem(QueryFilterProperty property)
-            : this(property, false) { }
+        public FilterItem(QueryFilterItem item)
+            : this(item, false) { }
 
-        public FilterItem(QueryFilterProperty property, bool isChecked)
+        public FilterItem(QueryFilterItem item, bool isChecked)
         {
-            Item = property;
+            Item = item;
             IsChecked = isChecked;
         }
 
-        public static implicit operator FilterItem(QueryFilterProperty property)
+        public static implicit operator FilterItem(QueryFilterItem item)
         {
-            return new FilterItem(property);
+            return new FilterItem(item);
         }
     }
 }

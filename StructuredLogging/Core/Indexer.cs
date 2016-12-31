@@ -28,22 +28,17 @@ namespace StructuredLogging.Core
         {
             _writer = new IndexWriter(indexDirectory, analyzer, recreateIfExists, new IndexWriter.MaxFieldLength(IndexWriter.DEFAULT_MAX_FIELD_LENGTH));
 
-            LoadAndSetConfiguration(_writer);
-        }
-
-        private void LoadAndSetConfiguration(IndexWriter writer)
-        {
             int size = GetSetting("RAMBufferSizeMB", 1024);
             int mergeFactor = GetSetting("MergeFactor", 40);
             int termIndexInterval = GetSetting("TermIndexInterval", 1024);
             bool useCompoundFile = GetSetting("UseCompoundFile", false);
 
-            writer.SetRAMBufferSizeMB(size);
-            writer.MergeFactor = mergeFactor;
-            writer.SetMergePolicy(new LogDocMergePolicy(writer));
-            writer.SetMergeScheduler(new ConcurrentMergeScheduler());
-            writer.TermIndexInterval = termIndexInterval;
-            writer.UseCompoundFile = useCompoundFile;
+            _writer.SetRAMBufferSizeMB(size);
+            _writer.MergeFactor = mergeFactor;
+            _writer.SetMergePolicy(new LogDocMergePolicy(_writer));
+            _writer.SetMergeScheduler(new ConcurrentMergeScheduler());
+            _writer.TermIndexInterval = termIndexInterval;
+            _writer.UseCompoundFile = useCompoundFile;
         }
 
         public void Index(RawEvents rawEvents)
