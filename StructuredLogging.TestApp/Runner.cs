@@ -10,12 +10,13 @@ namespace StructuredLogging.TestApp
 {
     sealed class Runner
     {
-        private readonly IKernel _kernel;
+        private readonly IIndexerService _indexer;
+        private readonly ISearcherService _searcher;
 
-        public Runner(IKernel kernel)
+        public Runner(IIndexerService indexer, ISearcherService searcher)
         {
-            _kernel = kernel;
-            _kernel.Load(new StructuredLoggingModule());
+            _indexer = indexer;
+            _searcher = searcher;
         }
 
         private RawEvents CreateSampleEvents()
@@ -84,10 +85,8 @@ namespace StructuredLogging.TestApp
         {
             var rawEvents = CreateSampleEvents();
             
-            var indexer = _kernel.Get<IIndexerService>();
-            indexer.Index(rawEvents);
+            _indexer.Index(rawEvents);
             
-            var searcher = _kernel.Get<ISearcherService>();
             var request = new SearchRequest("cpu", new[]
                 {
                     new QueryFilterItem(DataContracts.Constants.Facet.Level, "Warning"), 
@@ -95,7 +94,7 @@ namespace StructuredLogging.TestApp
                     new QueryFilterItem(DataContracts.Constants.Facet.Level, "Verbose")
                 });
 
-            var results = searcher.Search(request);
+            var results = _searcher.Search(request);
             foreach (var result in results.Results)
             {
                 Console.WriteLine(result);

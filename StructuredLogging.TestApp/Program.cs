@@ -7,9 +7,9 @@ namespace StructuredLogging.TestApp
     {
         static void Main()
         {
-            using (var kernel = new StandardKernel())
+            using (var kernel = new StandardKernel(new TestAppModule(), new StructuredLoggingModule()))
             {
-                var runner = new Runner(kernel);
+                var runner = kernel.Get<Runner>();
                 runner.Run();
             }
 
