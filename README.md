@@ -11,7 +11,7 @@ These are sent across the network to StructuredLogging, which displays and makes
 TODO
 
 # TODOs
-* WPF Client.
+* <strike>WPF Client.</strike>
 * Angular2 Client.
 * Refactoring (:
 
