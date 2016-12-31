@@ -56,6 +56,14 @@
         </Style.Triggers>
     </Style>
 
+    <Style x:Key="SquareCheckBoxStyle"
+           TargetType="{x:Type CheckBox}"
+           BasedOn="{StaticResource MetroCheckBox}">
+        <Setter Property="Background"
+                Value="White" />
+        <Setter Property="BorderBrush" Value="Gray" />
+    </Style>
+
     <Style TargetType="controls:GroupBoxControl">
         <Style.Resources>
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />

@@ -105,7 +105,7 @@
                       Command="{Binding Path=DataContext.FilterCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl, AncestorLevel=2}}"
                       CommandParameter="{Binding}"
                       IsChecked="{Binding Path=IsChecked, Mode=TwoWay}"
-                      Style="{DynamicResource SquareFacetCheckBoxStyle}">
+                      Style="{DynamicResource SquareCheckBoxStyle}">
                 <CheckBox.Content>
                     <Grid x:Name="ContentContainer">
                         <Grid.ColumnDefinitions>
