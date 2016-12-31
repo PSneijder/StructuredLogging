@@ -9,5 +9,10 @@ namespace StructuredLogging.DataContracts.Query
         public QueryFilterItem[] Items { get; set; }
         public DateTime From { get; set; }
         public DateTime To { get; set; }
+
+        public override string ToString()
+        {
+            return $"{From} {To} {Items}";
+        }
     }
 }

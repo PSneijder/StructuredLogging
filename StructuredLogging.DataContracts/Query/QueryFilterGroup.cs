@@ -15,5 +15,10 @@ namespace StructuredLogging.DataContracts.Query
             Name = name;
             Filters = filters.ToArray();
         }
+
+        public override string ToString()
+        {
+            return $"{Name} {Filters.Length}";
+        }
     }
 }
