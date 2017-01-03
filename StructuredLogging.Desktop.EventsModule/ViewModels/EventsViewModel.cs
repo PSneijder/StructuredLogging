@@ -125,7 +125,11 @@ namespace StructuredLogging.Desktop.EventsModule.ViewModels
             CultureInfo.DefaultThreadCurrentCulture = culture;
             CultureInfo.DefaultThreadCurrentUICulture = culture;
 
+            IsBusy = true;
+
             SearchResult result = await _client.Search(new SearchRequest(string.Empty));
+
+            IsBusy = false;
 
             MinStartDate = result.Items.Any() ? result.Items.Min(p => p.Timestamp) : DateTime.MinValue;
             MaxStartDate = result.Items.Any() ? result.Items.Max(p => p.Timestamp) : DateTime.MaxValue;
@@ -186,7 +190,11 @@ namespace StructuredLogging.Desktop.EventsModule.ViewModels
             if (parameter != null && parameter.IsChecked)
             {
                 var filter = parameter.Item;
-                filters.Add(new QueryFilterItem(filter.Name, filter.Value, filter.HitCount));
+
+                if(!filters.Contains(filter))
+                { 
+                    filters.Add(new QueryFilterItem(filter.Name, filter.Value, filter.HitCount));
+                }
             }
 
             SearchResult result;
