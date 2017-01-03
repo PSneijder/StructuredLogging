@@ -14,8 +14,8 @@ TODO
 * <strike>WPF Client.</strike>
 * Angular2 Client.
 * Refactoring (:
-* <strike>Realtime monitoring of log events.</strike>
 * Integration for Serilog, NLog, <strike>log4net</strike>, SLAP, Powershell, NodeJS, Python, Java.
+* <strike>Realtime monitoring.</strike>
 
 # Recent Changes
 See [CHANGES.txt](CHANGES.txt)
