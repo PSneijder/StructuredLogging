@@ -39,6 +39,10 @@
       <HintPath>..\packages\MahApps.Metro.1.3.0\lib\net45\MahApps.Metro.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Client, Version=2.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Client.2.2.1\lib\net45\Microsoft.AspNet.SignalR.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
       <Private>True</Private>
@@ -91,6 +95,8 @@
     <Compile Include="Models\Filter\FilterGroup.cs" />
     <Compile Include="Models\Filter\FilterItem.cs" />
     <Compile Include="Selectors\QueryFilterSelector.cs" />
+    <Compile Include="Services\Clients\HubClient.cs" />
+    <Compile Include="Services\Clients\IHubClient.cs" />
     <Compile Include="Services\Clients\ServiceClient.cs" />
     <Compile Include="Services\Clients\ConfigurationReaderBase.cs" />
     <Compile Include="Constants.cs" />
@@ -110,6 +116,7 @@
     <Compile Include="ViewModels\ViewModelBase.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

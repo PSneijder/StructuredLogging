@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Web.Http;
+using Microsoft.AspNet.SignalR;
 using StructuredLogging.DataContracts.Event;
 using StructuredLogging.Services.Contracts;
+using StructuredLogging.WebApi.Hubs;
 using Swashbuckle.Swagger.Annotations;
 
 namespace StructuredLogging.WebApi.Controllers
@@ -11,10 +13,13 @@ namespace StructuredLogging.WebApi.Controllers
         : ApiController
     {
         private readonly IIndexerService _service;
+        private readonly IHubContext _eventHub;
 
         public IndexerController(IIndexerService service)
         {
             _service = service;
+
+            _eventHub = GlobalHost.ConnectionManager.GetHubContext<EventHub>();
         }
 
         // POST api/index
@@ -26,6 +31,8 @@ namespace StructuredLogging.WebApi.Controllers
             try
             {
                 _service.Index(rawEvents);
+
+                _eventHub.Clients.All.BroadcastEvents(rawEvents);
 
                 return Ok();
             }
@@ -44,6 +51,8 @@ namespace StructuredLogging.WebApi.Controllers
             try
             {
                 _service.Index(rawEvent);
+
+                _eventHub.Clients.All.BroadcastEvent(rawEvent);
 
                 return Ok();
             }

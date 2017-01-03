@@ -10,6 +10,10 @@ namespace StructuredLogging.Desktop.Utilities
     {
         public override void Load()
         {
+            Bind<IHubClient>()
+                .To<HubClient>()
+                    .WithConstructorArgument(ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None));
+
             Bind<IServiceClient>()
                 .To<ServiceClient>()
                     .WithConstructorArgument(ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None));

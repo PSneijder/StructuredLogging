@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows.Threading;
 using Prism.Commands;
 using StructuredLogging.DataContracts;
 using StructuredLogging.DataContracts.Query;
@@ -21,6 +23,7 @@ namespace StructuredLogging.Desktop.EventsModule.ViewModels
 
         private readonly IDialogService _dialogService;
         private readonly IServiceClient _client;
+        private readonly IHubClient _hubClient;
         private DateTime? _selectedStartDate;
         private DateTime? _selectedEndDate;
         private TimeSpan? _selectedStartTime;
@@ -89,10 +92,11 @@ namespace StructuredLogging.Desktop.EventsModule.ViewModels
 
         #endregion
 
-        public EventsViewModel(IShellService shellService, IDialogService dialogService, IServiceClient client)
+        public EventsViewModel(IShellService shellService, IDialogService dialogService, IServiceClient client, IHubClient hubClient)
         {
             _dialogService = dialogService;
             _client = client;
+            _hubClient = hubClient;
 
             SearchCommand = new DelegateCommand<string>(OnSearch);
             ClearCommand = new DelegateCommand<string>(OnSearch);
@@ -113,6 +117,8 @@ namespace StructuredLogging.Desktop.EventsModule.ViewModels
         ~EventsViewModel()
         {
             _dialogService.DialogClosed -= OnGetRawEvents;
+
+            _hubClient.Disconnect();
         }
 
         private async void OnInitialize()
@@ -135,6 +141,17 @@ namespace StructuredLogging.Desktop.EventsModule.ViewModels
             MaxStartDate = result.Items.Any() ? result.Items.Max(p => p.Timestamp) : DateTime.MaxValue;
 
             OnGetRawEvents();
+
+            _hubClient.EventReceived += rawEvent =>
+            {
+                Debug.WriteLine("RawEvent received" + rawEvent.ToString());
+            };
+            _hubClient.EventsReceived += rawEvents =>
+            {
+                Debug.WriteLine("RawEvents received" + rawEvents.Events.Length);
+            };
+
+            _hubClient.Connect();
         }
 
         private async void OnGetRawEvents()
