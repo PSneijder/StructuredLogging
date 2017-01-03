@@ -95,7 +95,7 @@ namespace StructuredLogging.TestApp
                 });
 
             var results = _searcher.Search(request);
-            foreach (var result in results.Results)
+            foreach (var result in results.Items)
             {
                 Console.WriteLine(result);
             }

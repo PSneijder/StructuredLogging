@@ -6,9 +6,9 @@ namespace StructuredLogging.DataContracts.Query
     [DebuggerDisplay("{Name} {Value} {HitCount}")]
     public struct QueryFilterItem
     {
-        public string Name { get; }
-        public string Value { get; }
-        public int HitCount { get; }
+        public string Name { get; private set; }
+        public string Value { get; private set; }
+        public int HitCount { get; private set; }
 
         public QueryFilterItem(string name, string value)
             : this(name, value, 0) { }

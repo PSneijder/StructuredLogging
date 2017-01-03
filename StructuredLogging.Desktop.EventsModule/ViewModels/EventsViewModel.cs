@@ -127,8 +127,8 @@ namespace StructuredLogging.Desktop.EventsModule.ViewModels
 
             SearchResult result = await _client.Search(new SearchRequest(string.Empty));
 
-            MinStartDate = result.Results.Min(p => p.Timestamp);
-            MaxStartDate = result.Results.Max(p => p.Timestamp);
+            MinStartDate = result.Items.Min(p => p.Timestamp);
+            MaxStartDate = result.Items.Max(p => p.Timestamp);
 
             OnGetRawEvents();
         }
@@ -140,7 +140,7 @@ namespace StructuredLogging.Desktop.EventsModule.ViewModels
             var result = await _client.Search(new SearchRequest(string.Empty));
 
             SearchResults.Clear();
-            foreach (var item in result.Results)
+            foreach (var item in result.Items)
             {
                 SearchResults.Add(item);
             }
@@ -200,7 +200,7 @@ namespace StructuredLogging.Desktop.EventsModule.ViewModels
             }
 
             SearchResults.Clear();
-            foreach (var item in result.Results)
+            foreach (var item in result.Items)
             {
                 SearchResults.Add(item);
             }

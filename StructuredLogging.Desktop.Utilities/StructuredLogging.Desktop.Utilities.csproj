@@ -99,6 +99,7 @@
     <Compile Include="Extensions\PrismExtensions.cs" />
     <Compile Include="Modularity\RegionNames.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Resolvers\PrivateContractResolver.cs" />
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\IDialogService.cs" />
     <Compile Include="Services\IHaveHaveDialogView.cs" />

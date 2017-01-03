@@ -11,6 +11,7 @@ namespace StructuredLogging.Tests
         [TestMethod]
         public void TestFormatWith()
         {
+            // Given
             var item = new RawEvent
             {
                 Level = "Warning",

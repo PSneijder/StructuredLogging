@@ -25,9 +25,9 @@ namespace StructuredLogging.WebApi.Controllers
         {
             try
             {
-                var results = _service.Search(request);
+                var result = _service.Search(request);
 
-                return Ok(results);
+                return Ok(result);
             }
             catch (Exception ex)
             {
@@ -43,9 +43,9 @@ namespace StructuredLogging.WebApi.Controllers
         {
             try
             {
-                var results = _service.Search(new SearchRequest(phrase));
+                var result = _service.Search(new SearchRequest(phrase));
 
-                return Ok(results);
+                return Ok(result);
             }
             catch (Exception ex)
             {

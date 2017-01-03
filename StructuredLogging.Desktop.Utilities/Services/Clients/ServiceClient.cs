@@ -4,17 +4,20 @@ using System.Configuration;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using StructuredLogging.DataContracts;
 using StructuredLogging.DataContracts.Query;
+using StructuredLogging.Desktop.Utilities.Services.Resolvers;
 using StructuredLogging.Services.Contracts;
 
 namespace StructuredLogging.Desktop.Utilities.Services.Clients
 {
-    sealed class RestHttpClient
+    sealed class WebApiClient
         : HttpClient
     {
-        public RestHttpClient(string baseUrl)
+        public WebApiClient(string baseUrl)
         {
             BaseAddress = new Uri(baseUrl);
             DefaultRequestHeaders.Accept.Clear();
@@ -26,29 +29,46 @@ namespace StructuredLogging.Desktop.Utilities.Services.Clients
         : ConfigurationReaderBase
             , IServiceClient
     {
-        private readonly ISearcherService _searcherService;
+        private readonly JsonSerializerSettings _settings = new JsonSerializerSettings
+        {
+            ContractResolver = new PrivateContractResolver()
+        };
+
         private readonly IQueryService _queryService;
         private readonly string _baseUrl;
-        private readonly string _site;
 
-        public ServiceClient(Configuration configuration, ISearcherService searcherService, IQueryService queryService)
+        public ServiceClient(Configuration configuration, IQueryService queryService)
             : base(configuration)
         {
-            _searcherService = searcherService;
-            _queryService = queryService;
+            _queryService = queryService; // ToDo: Change to WebApi
 
-            string url = ReadSetting("baseUrl");
-            Uri uri = new Uri(url);
-
-            _baseUrl = $"{uri.Scheme}://{uri.Host}:{uri.Port}";
-            _site = url;
+            _baseUrl = ReadSetting("baseUrl");
 
             ServicePointManager.ServerCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true;
         }
         
         public async Task<SearchResult> Search(SearchRequest request)
         {
-            return await Task.Factory.StartNew(() => _searcherService.Search(request));
+            // url: /api/event/
+            string url = $"{_baseUrl}/{Constants.RoutePrefix}/{Constants.RouteSearch}";
+
+            string jsonString = JsonConvert.SerializeObject(request);
+            StringContent content = new StringContent(jsonString, Encoding.UTF8, Constants.HeaderMediaTypeJson);
+
+            using (WebApiClient client = new WebApiClient(_baseUrl))
+            {
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                jsonString = await response.Content.ReadAsStringAsync();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    SearchResult result = JsonConvert.DeserializeObject<SearchResult>(jsonString, _settings);
+                    return result;
+                }
+
+                string messageString = await response.Content.ReadAsStringAsync();
+                throw new HttpRequestException(messageString);
+            }
         }
 
         public async Task<IEnumerable<QueryFilterItem>> GetFilterItems()

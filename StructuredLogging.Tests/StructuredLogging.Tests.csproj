@@ -35,8 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Serilog">
-      <HintPath>..\packages\Serilog.2.4.0-dev-00766\lib\net45\Serilog.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>
@@ -55,6 +56,7 @@
   <ItemGroup>
     <Compile Include="ExpressionTests.cs" />
     <Compile Include="ExtensionTests.cs" />
+    <Compile Include="JsonConverterTests.cs" />
     <Compile Include="MessageTemplateParserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -63,10 +65,17 @@
       <Project>{741fb75a-81f3-4623-8779-e4d1c79e0441}</Project>
       <Name>StructuredLogging.DataContracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\StructuredLogging.Desktop.Utilities\StructuredLogging.Desktop.Utilities.csproj">
+      <Project>{644E79EB-41CB-42A3-B219-95DACB1C5F2A}</Project>
+      <Name>StructuredLogging.Desktop.Utilities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\StructuredLogging\StructuredLogging.csproj">
       <Project>{17debbd3-52cd-4e82-ab15-0746780de9c4}</Project>
       <Name>StructuredLogging</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

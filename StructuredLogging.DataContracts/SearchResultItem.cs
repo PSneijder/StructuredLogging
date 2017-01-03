@@ -6,9 +6,9 @@ namespace StructuredLogging.DataContracts
     [DebuggerDisplay("{Timestamp} {Level} {Message}")]
     public struct SearchResultItem
     {
-        public string Level { get; }
-        public string Message { get; }
-        public DateTime Timestamp { get; }
+        public string Level { get; private set; }
+        public string Message { get; private set; }
+        public DateTime Timestamp { get; private set; }
         
         public SearchResultItem(string level, DateTime timestamp, string message)
             : this()

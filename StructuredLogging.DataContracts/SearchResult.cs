@@ -5,22 +5,22 @@ using StructuredLogging.DataContracts.Query;
 
 namespace StructuredLogging.DataContracts
 {
-    [DebuggerDisplay("{Results} {Groups}")]
+    [DebuggerDisplay("{Items} {Groups}")]
     public struct SearchResult
     {
-        public QueryFilterGroup[] Groups { get; }
-        public SearchResultItem[] Results { get; }
+        public QueryFilterGroup[] Groups { get; private set; }
+        public SearchResultItem[] Items { get; private set; }
 
-        public SearchResult(IEnumerable<SearchResultItem> results, IEnumerable<QueryFilterGroup> groups)
+        public SearchResult(IEnumerable<SearchResultItem> items, IEnumerable<QueryFilterGroup> groups)
             : this()
         {
-            Results = results.ToArray();
+            Items = items.ToArray();
             Groups = groups.ToArray();
         }
         
         public override string ToString()
         {
-            return $"{Results} {Groups}";
+            return $"{Items} {Groups}";
         }
     }
 }

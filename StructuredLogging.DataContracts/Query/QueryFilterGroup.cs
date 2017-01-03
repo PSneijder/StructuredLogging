@@ -7,8 +7,8 @@ namespace StructuredLogging.DataContracts.Query
     [DebuggerDisplay("{Name} {Filters.Length}")]
     public class QueryFilterGroup
     {
-        public string Name { get; }
-        public QueryFilterItem[] Filters { get; }
+        public string Name { get; private set; }
+        public QueryFilterItem[] Filters { get; private set; }
 
         public QueryFilterGroup(string name, IEnumerable<QueryFilterItem> filters)
         {

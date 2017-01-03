@@ -35,6 +35,12 @@ namespace StructuredLogging.Extensions
         private static IDictionary<string, BrowseSelection> CreateSelection(Query query)
         {
             var selectionMap = new Dictionary<string, BrowseSelection>();
+
+            if (query.Items == null)
+            {
+                return selectionMap;
+            }
+
             foreach (var property in query.Items)
             {
                 BrowseSelection selection;
