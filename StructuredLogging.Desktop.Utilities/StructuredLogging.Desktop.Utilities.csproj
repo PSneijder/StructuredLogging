@@ -91,6 +91,7 @@
     <Compile Include="Converters\LevelToBackgroundColorConverter.cs" />
     <Compile Include="Converters\LevelToColorConverter.cs" />
     <Compile Include="Converters\InverseBooleanConverter.cs" />
+    <Compile Include="Extensions\ObservableCollectionExtensions.cs" />
     <Compile Include="Models\DialogActionCommand.cs" />
     <Compile Include="Models\Filter\FilterGroup.cs" />
     <Compile Include="Models\Filter\FilterItem.cs" />

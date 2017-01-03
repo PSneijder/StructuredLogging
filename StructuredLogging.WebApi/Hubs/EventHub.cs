@@ -1,19 +1,20 @@
-﻿using Microsoft.AspNet.SignalR;
-using StructuredLogging.DataContracts.Event;
+﻿using System.Collections.Generic;
+using Microsoft.AspNet.SignalR;
+using StructuredLogging.DataContracts;
 
 namespace StructuredLogging.WebApi.Hubs
 {
     public class EventHub
         : Hub
     {
-        public void BroadcastEvents(RawEvents rawEvents)
+        public void BroadcastEvents(IEnumerable<SearchResultItem> items)
         {
-            Clients.All.BroadcastEvents(rawEvents);
+            Clients.All.BroadcastEvents(items);
         }
 
-        public void BroadcastEvent(RawEvent rawEvent)
+        public void BroadcastEvent(SearchResultItem item)
         {
-            Clients.All.BroadcastEvent(rawEvent);
+            Clients.All.BroadcastEvent(item);
         }
     }
 }

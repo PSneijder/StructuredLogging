@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.AspNet.SignalR.Client;
 using StructuredLogging.DataContracts.Event;
 using System.Configuration;
+using StructuredLogging.DataContracts;
 
 namespace StructuredLogging.Desktop.Utilities.Services.Clients
 {
@@ -17,18 +19,18 @@ namespace StructuredLogging.Desktop.Utilities.Services.Clients
 
         public event EventReceivedEventHandler EventReceived;
 
-        private void OnEventReceived(RawEvent rawEvent)
+        private void OnEventReceived(SearchResultItem item)
         {
             var handler = EventReceived;
-            handler?.Invoke(rawEvent);
+            handler?.Invoke(item);
         }
 
         public event EventsReceivedEventHandler EventsReceived;
 
-        private void OnEventsReceived(RawEvents rawEvents)
+        private void OnEventsReceived(IEnumerable<SearchResultItem> items)
         {
             var handler = EventsReceived;
-            handler?.Invoke(rawEvents);
+            handler?.Invoke(items);
         }
 
         #endregion
@@ -57,8 +59,8 @@ namespace StructuredLogging.Desktop.Utilities.Services.Clients
             _connection = new HubConnection(_baseUrl);
             _proxy = _connection.CreateHubProxy("EventHub");
 
-            _proxy.On("BroadcastEvent", new Action<RawEvent>(OnEventReceived));
-            _proxy.On("BroadcastEvents", new Action<RawEvents>(OnEventsReceived));
+            _proxy.On("BroadcastEvent", new Action<SearchResultItem>(OnEventReceived));
+            _proxy.On("BroadcastEvents", new Action<IEnumerable<SearchResultItem>>(OnEventsReceived));
 
             _connection.Start();
             _connection.StateChanged += OnStateChanged;

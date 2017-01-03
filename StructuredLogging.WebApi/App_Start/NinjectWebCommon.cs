@@ -1,5 +1,5 @@
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(StructuredLogging.WebApi.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(StructuredLogging.WebApi.App_Start.NinjectWebCommon), "Stop")]
+[assembly: WebActivatorEx.ApplicationShutdownMethod(typeof(StructuredLogging.WebApi.App_Start.NinjectWebCommon), "Stop")]
 
 namespace StructuredLogging.WebApi.App_Start
 {

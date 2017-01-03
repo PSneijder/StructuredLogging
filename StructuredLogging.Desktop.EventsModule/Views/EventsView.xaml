@@ -169,14 +169,14 @@
             <Grid Grid.Column="0"
                   Grid.Row="2">
                 <ListBox x:Name="SearchListBox"
-                             Margin="0,0,0,20"
-                             BorderThickness="0"
-                             Background="#EBEBEB"
-                             ItemsSource="{Binding Path=SearchResults,Mode=OneWay}"
-                             SelectedItem="{Binding Path=SelectedSearchResult, Mode=TwoWay}"
-                             SelectionMode="Single"
-                             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                             ItemTemplate="{DynamicResource DefaultSearchResultDataTemplate}" />
+                         Margin="0,0,0,20"
+                         BorderThickness="0"
+                         Background="#EBEBEB"
+                         ItemsSource="{Binding Path=SearchResults, Mode=OneWay, NotifyOnValidationError=False}"
+                         SelectedItem="{Binding Path=SelectedSearchResult, Mode=TwoWay}"
+                         SelectionMode="Single"
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                         ItemTemplate="{DynamicResource DefaultSearchResultDataTemplate}" />
 
                 <controls:MetroProgressBar VerticalAlignment="Bottom"
                                            IsIndeterminate="True"

@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
-using System.Windows.Threading;
 using Prism.Commands;
 using StructuredLogging.DataContracts;
+using StructuredLogging.DataContracts.Event;
 using StructuredLogging.DataContracts.Query;
+using StructuredLogging.Desktop.Utilities.Extensions;
 using StructuredLogging.Desktop.Utilities.Models.Filter;
 using StructuredLogging.Desktop.Utilities.Services;
 using StructuredLogging.Desktop.Utilities.Services.Clients;
@@ -121,7 +122,7 @@ namespace StructuredLogging.Desktop.EventsModule.ViewModels
             _hubClient.Disconnect();
         }
 
-        private async void OnInitialize()
+        private void OnInitialize()
         {
             _dialogService.DialogClosed += OnGetRawEvents;
 
@@ -131,27 +132,35 @@ namespace StructuredLogging.Desktop.EventsModule.ViewModels
             CultureInfo.DefaultThreadCurrentCulture = culture;
             CultureInfo.DefaultThreadCurrentUICulture = culture;
 
-            IsBusy = true;
-
-            SearchResult result = await _client.Search(new SearchRequest(string.Empty));
-
-            IsBusy = false;
-
-            MinStartDate = result.Items.Any() ? result.Items.Min(p => p.Timestamp) : DateTime.MinValue;
-            MaxStartDate = result.Items.Any() ? result.Items.Max(p => p.Timestamp) : DateTime.MaxValue;
-
             OnGetRawEvents();
 
-            _hubClient.EventReceived += rawEvent =>
+            _hubClient.EventReceived += async item =>
             {
-                Debug.WriteLine("RawEvent received" + rawEvent.ToString());
+                await Application.Current.Dispatcher.InvokeAsync(() =>
+                {
+                    OnAddSearchResultItem(item);
+                });
             };
-            _hubClient.EventsReceived += rawEvents =>
+
+            _hubClient.EventsReceived += async items =>
             {
-                Debug.WriteLine("RawEvents received" + rawEvents.Events.Length);
+                await Application.Current.Dispatcher.InvokeAsync(() =>
+                {
+                    foreach (var item in items)
+                    {
+                        OnAddSearchResultItem(item);
+                    }
+                });
             };
 
             _hubClient.Connect();
+        }
+
+        private void OnAddSearchResultItem(SearchResultItem item)
+        {
+            SearchResults.Add(item);
+
+            SearchResults.Sort();
         }
 
         private async void OnGetRawEvents()
@@ -171,6 +180,9 @@ namespace StructuredLogging.Desktop.EventsModule.ViewModels
             {
                 QueryFilters.Add(group);
             }
+
+            MinStartDate = result.Items.Any() ? result.Items.Min(p => p.Timestamp) : DateTime.MinValue;
+            MaxStartDate = result.Items.Any() ? result.Items.Max(p => p.Timestamp) : DateTime.MaxValue;
 
             SelectedStartDate = SearchResults.Any() ? SearchResults.Min(p => p.Timestamp) : MinStartDate;
             SelectedEndDate = SearchResults.Any() ? SearchResults.Max(p => p.Timestamp) : MaxStartDate;

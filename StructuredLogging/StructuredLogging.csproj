@@ -151,7 +151,7 @@
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\DocumentsExtensions.cs" />
     <Compile Include="Extensions\FieldExtensions.cs" />
-    <Compile Include="Extensions\RawEventsExtensions.cs" />
+    <Compile Include="Extensions\RawEventExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

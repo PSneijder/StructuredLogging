@@ -4,7 +4,6 @@
                     xmlns:converters="clr-namespace:StructuredLogging.Desktop.Utilities.Converters;assembly=StructuredLogging.Desktop.Utilities"
                     xmlns:selectors="clr-namespace:StructuredLogging.Desktop.Utilities.Selectors;assembly=StructuredLogging.Desktop.Utilities"
                     xmlns:models="clr-namespace:StructuredLogging.Desktop.Utilities.Models.Filter;assembly=StructuredLogging.Desktop.Utilities"
-                    xmlns:controls="clr-namespace:StructuredLogging.Desktop.Utilities.Controls;assembly=StructuredLogging.Desktop.Utilities"
                     xmlns:data="clr-namespace:StructuredLogging.Desktop.Utilities.Data;assembly=StructuredLogging.Desktop.Utilities">
 
     <BitmapImage x:Key="CompIconDefault" UriSource="Images/NoGraphic.png" />
@@ -15,14 +14,44 @@
 
     <!-- Search Template with Image (ID, Name, Description) -->
     <DataTemplate x:Key="DefaultSearchResultDataTemplate"
-                  DataType="{x:Type dataContracts:SearchResult}">
+                  DataType="{x:Type dataContracts:SearchResultItem}">
         <Grid>
             <Grid.Style>
                 <Style TargetType="{x:Type Grid}">
-                    <Setter Property="Background" Value="{Binding Path=Level, Converter={StaticResource LevelToBackgroundColorConverter}}" />
+                    <Setter Property="Background"
+                            Value="{Binding Path=Level, Converter={StaticResource LevelToBackgroundColorConverter}}" />
                 </Style>
             </Grid.Style>
-            
+
+            <Grid.Triggers>
+                <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                             Duration="00:00:02"
+                                             From="0"
+                                             To="1" />
+                            <DoubleAnimation Storyboard.TargetProperty="LayoutTransform.(ScaleTransform.ScaleY)"
+                                             Duration="00:00:08"
+                                             From="0" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="FrameworkElement.Unloaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                             Duration="00:00:02"
+                                             From="1"
+                                             To="0" />
+                            <DoubleAnimation Storyboard.TargetProperty="LayoutTransform.(ScaleTransform.ScaleY)"
+                                             Duration="00:00:08"
+                                             To="0" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Grid.Triggers>
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />

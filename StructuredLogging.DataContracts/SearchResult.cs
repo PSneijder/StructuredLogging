@@ -6,13 +6,12 @@ using StructuredLogging.DataContracts.Query;
 namespace StructuredLogging.DataContracts
 {
     [DebuggerDisplay("{Items} {Groups}")]
-    public struct SearchResult
+    public class SearchResult
     {
         public QueryFilterGroup[] Groups { get; private set; }
         public SearchResultItem[] Items { get; private set; }
 
         public SearchResult(IEnumerable<SearchResultItem> items, IEnumerable<QueryFilterGroup> groups)
-            : this()
         {
             Items = items.ToArray();
             Groups = groups.ToArray();

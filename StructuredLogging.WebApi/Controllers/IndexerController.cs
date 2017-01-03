@@ -32,7 +32,8 @@ namespace StructuredLogging.WebApi.Controllers
             {
                 _service.Index(rawEvents);
 
-                _eventHub.Clients.All.BroadcastEvents(rawEvents);
+                var items = _service.ToSearchResults(rawEvents);
+                _eventHub.Clients.All.BroadcastEvents(items);
 
                 return Ok();
             }
@@ -52,7 +53,8 @@ namespace StructuredLogging.WebApi.Controllers
             {
                 _service.Index(rawEvent);
 
-                _eventHub.Clients.All.BroadcastEvent(rawEvent);
+                var item = _service.ToSearchResult(rawEvent);
+                _eventHub.Clients.All.BroadcastEvent(item);
 
                 return Ok();
             }

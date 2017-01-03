@@ -4,14 +4,14 @@ using System.Diagnostics;
 namespace StructuredLogging.DataContracts
 {
     [DebuggerDisplay("{Timestamp} {Level} {Message}")]
-    public struct SearchResultItem
+    public class SearchResultItem
+        : IComparable
     {
         public string Level { get; private set; }
         public string Message { get; private set; }
         public DateTime Timestamp { get; private set; }
         
         public SearchResultItem(string level, DateTime timestamp, string message)
-            : this()
         {
             Level = level;
             Timestamp = timestamp;
@@ -21,6 +21,13 @@ namespace StructuredLogging.DataContracts
         public override string ToString()
         {
             return $"{Timestamp:s} {Level} {Message}";
+        }
+
+        public int CompareTo(object o)
+        {
+            SearchResultItem other = (SearchResultItem) o;
+
+            return DateTime.Compare(other.Timestamp, Timestamp);
         }
     }
 }
