@@ -59,9 +59,12 @@ namespace StructuredLogging.Core
                 document.AddField(Fields.MessageTemplate, rawEvent.MessageTemplate, Field.Index.ANALYZED);
                 document.AddField(Fields.Properties, properties, Field.Index.ANALYZED);
 
-                foreach (var property in rawEvent.Properties)
-                {
-                    document.AddField(DataContracts.Constants.Facet.PropertyField, property.Key, Field.Index.NOT_ANALYZED);
+                if(rawEvent.Properties != null)
+                { 
+                    foreach (var property in rawEvent.Properties)
+                    {
+                        document.AddField(DataContracts.Constants.Facet.PropertyField, property.Key, Field.Index.NOT_ANALYZED);
+                    }
                 }
 
                 _writer.AddDocument(document);

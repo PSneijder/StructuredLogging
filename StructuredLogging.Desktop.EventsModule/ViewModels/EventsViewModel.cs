@@ -127,8 +127,8 @@ namespace StructuredLogging.Desktop.EventsModule.ViewModels
 
             SearchResult result = await _client.Search(new SearchRequest(string.Empty));
 
-            MinStartDate = result.Items.Min(p => p.Timestamp);
-            MaxStartDate = result.Items.Max(p => p.Timestamp);
+            MinStartDate = result.Items.Any() ? result.Items.Min(p => p.Timestamp) : DateTime.MinValue;
+            MaxStartDate = result.Items.Any() ? result.Items.Max(p => p.Timestamp) : DateTime.MaxValue;
 
             OnGetRawEvents();
         }
@@ -151,8 +151,8 @@ namespace StructuredLogging.Desktop.EventsModule.ViewModels
                 QueryFilters.Add(group);
             }
 
-            SelectedStartDate = SearchResults.Min(p => p.Timestamp);
-            SelectedEndDate = SearchResults.Max(p => p.Timestamp);
+            SelectedStartDate = SearchResults.Any() ? SearchResults.Min(p => p.Timestamp) : MinStartDate;
+            SelectedEndDate = SearchResults.Any() ? SearchResults.Max(p => p.Timestamp) : MaxStartDate;
 
             IsBusy = false;
         }
