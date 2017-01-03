@@ -6,7 +6,7 @@ using StructuredLogging.Services.Contracts;
 
 namespace StructuredLogging.WebApi.Controllers
 {
-    [Route("search")]
+    [RoutePrefix(Constants.RoutePrefix)]
     public class SearcherController
         : ApiController
     {
@@ -20,6 +20,7 @@ namespace StructuredLogging.WebApi.Controllers
         // GET api/search/test
         [SwaggerOperation("GetByRequest")]
         [HttpPost]
+        [Route(Constants.RouteSearch)]
         public IHttpActionResult Get([FromBody] SearchRequest request)
         {
             try
@@ -37,6 +38,7 @@ namespace StructuredLogging.WebApi.Controllers
         // GET api/search/test
         [SwaggerOperation("GetByPhrase")]
         [HttpGet]
+        [Route(Constants.RouteSearch + "/{phrase}")]
         public IHttpActionResult Get(string phrase)
         {
             try

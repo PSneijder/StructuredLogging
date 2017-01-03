@@ -67,5 +67,10 @@ namespace StructuredLogging
         public static Version Version = Version.LUCENE_30;
 
         public const int MaxNrOfSearchResults = 50;
+
+        public const string RoutePrefix = "api";
+        public const string RouteSearch = "search";
+        public const string RouteEvent = "event";
+        public const string RouteEvents = "events";
     }
 }

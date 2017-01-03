@@ -2,10 +2,11 @@
 using System.Web.Http;
 using StructuredLogging.DataContracts.Event;
 using StructuredLogging.Services.Contracts;
+using Swashbuckle.Swagger.Annotations;
 
 namespace StructuredLogging.WebApi.Controllers
 {
-    [Route("index")]
+    [RoutePrefix(Constants.RoutePrefix)]
     public class IndexerController
         : ApiController
     {
@@ -15,14 +16,34 @@ namespace StructuredLogging.WebApi.Controllers
         {
             _service = service;
         }
-        
-        // POST api/index/test
+
+        // POST api/index
+        [SwaggerOperation("CreateRawEvents")]
         [HttpPost]
-        public IHttpActionResult Post([FromBody] RawEvents rawEvents)
+        [Route(Constants.RouteEvents)]
+        public IHttpActionResult CreateRawEvents([FromBody] RawEvents rawEvents)
         {
             try
             {
                 _service.Index(rawEvents);
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
+        // POST api/index
+        [SwaggerOperation("CreateRawEvent")]
+        [HttpPost]
+        [Route(Constants.RouteEvent)]
+        public IHttpActionResult CreateRawEvent([FromBody] RawEvent rawEvent)
+        {
+            try
+            {
+                _service.Index(rawEvent);
 
                 return Ok();
             }

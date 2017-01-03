@@ -18,5 +18,10 @@ namespace StructuredLogging.Services
         {
             _indexer.Index(rawEvents);
         }
+
+        public void Index(RawEvent rawEvent)
+        {
+            _indexer.Index(rawEvent);
+        }
     }
 }
