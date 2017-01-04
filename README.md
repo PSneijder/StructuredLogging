@@ -15,7 +15,7 @@ TODO
 * Angular2 Client.
 * Refactoring (:
 * <strike>Realtime monitoring.</strike>
-* Integration for Serilog, NLog, <strike>log4net</strike>, SLAP, Powershell, NodeJS, Python, Java.
+* Integration for Serilog, <strike>NLog</strike>, <strike>log4net</strike>, SLAP, Powershell, NodeJS, Python, Java.
 
 # Recent Changes
 See [CHANGES.txt](CHANGES.txt)
